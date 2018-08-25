@@ -9,6 +9,8 @@ Plug 'rking/ag.vim'
 
 call plug#end()
 
+set noai
+
 if &cp | set nocp | endif
 let s:cpo_save=&cpo
 set cpo&vim
