@@ -15,6 +15,14 @@ if ! hash stow 2>/dev/null; then
     exit 1
   fi
 fi
+if [[ -e "$HOME/.bashrc" ]]; then
+  echo "Moving host's .bashrc to .bashrc.bak, You can source it from .bashrc if necessary"
+  mv "$HOME/.bashrc" "$HOME/.bashrc.bak"
+fi
+if [[ -e "$HOME/.vimrc" ]]; then
+  echo "Moving host's .vimrc to .vimrc.bak, You can source it from .vimrc if necessary"
+  mv "$HOME/.vimrc" "$HOME/.vimrc.bak"
+fi
 echo "stow -t $HOME/ -S $DIR/root"
 ./stow.sh
 vim +PlugInstall +qall
