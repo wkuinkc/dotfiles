@@ -17,3 +17,4 @@ if ! hash stow 2>/dev/null; then
 fi
 echo "stow -t $HOME/ -S $DIR/root"
 ./stow.sh
+vim +PlugInstall +qall
