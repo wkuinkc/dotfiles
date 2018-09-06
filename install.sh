@@ -5,6 +5,7 @@
 # Command check notation borrowed from:
 # http://stackoverflow.com/a/677212/1243823
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+pushd "$DIR"
 if ! hash stow 2>/dev/null; then
   echo "Installing GNU stow to symlink files..."
   if hash apt-get 2>/dev/null; then
@@ -29,3 +30,4 @@ fi
 echo "stow -t $HOME/ -S $DIR/root"
 ./stow.sh
 vim +PlugInstall +qall
+popd
