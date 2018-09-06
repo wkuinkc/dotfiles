@@ -1,2 +1,3 @@
 *.swp
 *.swo
+/root/.vim/plugged
