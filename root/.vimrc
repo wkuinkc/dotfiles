@@ -1,11 +1,13 @@
 " Begin plugin init
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-bundler'
-Plug 'danchoi/ri.vim'
+" Plug 'scrooloose/nerdtree'
+" Plug 'tpope/vim-bundler'
+" Plug 'danchoi/ri.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rking/ag.vim'
+Plug 'junegunn/fzf', { 'dir': $HOME . '/.fzf', 'do': 'yes \| ./install --all' }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -89,4 +91,6 @@ let g:ctrlp_use_caching = 0
 filetype on
 cmap \t CtrlP
 " map ,t use :Ag! to search for word under cursor
-map ,t wbyw:Ag! -s -w "
+""" map ,t wbyw:Ag! -s -w "
+map ,t :Ag!
+map ,l :Lines
