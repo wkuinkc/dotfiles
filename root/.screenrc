@@ -1,0 +1,8 @@
+hardstatus alwayslastline
+hardstatus string '%{= WK}[ %{K}%H %{K}][%= %{=WK}%?%-Lw%?%{b}(%{b}%n*%f%t%?(%u)%?%{b})%{K}%?%+Lw%?%?%= %{K}][%{K}%Y-%m-%d %{W}%c %{K}]'
+defscrollback 1000
+vbell off
+# Default screens
+screen  0
+screen  1
+# screen -t shell3      2
