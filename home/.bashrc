@@ -22,3 +22,5 @@ export EDITOR=vim
 export NVM_DIR="/root/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [[ -f ~/downloads/z.sh ]] && . ~/downloads/z.sh
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
