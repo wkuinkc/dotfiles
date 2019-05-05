@@ -1,32 +1,31 @@
 #!/bin/bash
+#
 # Installs the dotfiles onto a newly provisioned server
 #
 # We use GNU stow to place the dotfiles, so here we install that
 # Command check notation borrowed from:
 # http://stackoverflow.com/a/677212/1243823
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-pushd "$DIR"
-if ! hash stow 2>/dev/null; then
-  echo "Installing GNU stow to symlink files..."
-  if hash apt-get 2>/dev/null; then
-    echo sudo apt-get update && sudo apt-get install -y stow
-    sudo apt-get update && sudo apt-get install -y stow
-  elif hash yum 2>/dev/null; then
-    echo sudo yum install -y stow --enablerepo=epel
-    sudo yum install -y stow --enablerepo=epel
-  else
-    echo "Neither apt-get nor yum found. Terminating..."
-    exit 1
-  fi
-fi
-if [[ -e "$HOME/.bashrc" ]]; then
-  echo "Moving host's .bashrc to .bashrc.bak, You can source it from .bashrc if necessary"
-  mv "$HOME/.bashrc" "$HOME/.bashrc.bak"
-fi
-if [[ -e "$HOME/.vimrc" ]]; then
-  echo "Moving host's .vimrc to .vimrc.bak, You can source it from .vimrc if necessary"
-  mv "$HOME/.vimrc" "$HOME/.vimrc.bak"
-fi
+
+DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$DIR"
+
+backup_dotfiles() {
+	if ! [[ -e "$1" ]]; then
+		return 0
+	elif [[ $(dirname $(readlink -f $1)) =~ $(pwd) ]]; then
+		return 0
+	fi
+
+	backup_name="$1.$(date).bak"
+
+	echo "Moving $1 to $backup_name"
+	mv "$1" "$backup_name"
+}
+
+backup_dotfiles "$HOME/.bashrc"
+backup_dotfiles "$HOME/.vimrc"
+
+./dependencies.sh
 ./stow.sh
+
 vim +PlugInstall +qall
-popd
