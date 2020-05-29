@@ -94,3 +94,4 @@ cmap \t CtrlP
 """ map ,t wbyw:Ag! -s -w "
 map ,t :Ag!
 map ,l :Lines
+set backupcopy=yes
