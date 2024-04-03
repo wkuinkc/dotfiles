@@ -5,6 +5,9 @@
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias egrep='egrep -s'
+alias fgrep='fgrep -s'
+alias grep='grep -s'
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -36,3 +39,8 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# Setup rust's cargo command if it exists
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+
+export PATH="/usr/local/lib/nodejs/node-v20.11.1-linux-x64/bin:$PATH"
